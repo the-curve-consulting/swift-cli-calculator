@@ -10,15 +10,24 @@ import Foundation
 
 protocol CalculatorFn {
     func execute(_ values: [Double]) -> Double
+    func history(_ values: [Double]) -> String
 }
 
 class AddFn : CalculatorFn {
+    func history(_ values: [Double]) -> String {
+        return "Add: \(values)"
+    }
+    
     func execute(_ values: [Double]) -> Double {
         return values.reduce(0, +)
     }
 }
 
 class SubtractFn : CalculatorFn {
+    func history(_ values: [Double]) -> String {
+        return "Subtract: \(values)"
+    }
+    
     func execute(_ values: [Double]) -> Double {
         var v = values; // Make it mutable
         let first = v.removeFirst()
@@ -27,6 +36,10 @@ class SubtractFn : CalculatorFn {
 }
 
 class DivideFn : CalculatorFn {
+    func history(_ values: [Double]) -> String {
+        return "Divide: \(values)"
+    }
+    
     func execute(_ values: [Double]) -> Double {
         var v = values; // Make it mutable
         let first = v.removeFirst()
@@ -35,6 +48,10 @@ class DivideFn : CalculatorFn {
 }
 
 class MultiplyFn : CalculatorFn {
+    func history(_ values: [Double]) -> String {
+        return "Multiply: \(values)"
+    }
+    
     func execute(_ values: [Double]) -> Double {
         var v = values; // Make it mutable
         let first = v.removeFirst()
@@ -44,7 +61,10 @@ class MultiplyFn : CalculatorFn {
 
 class Calculator {
     
+    var history = Array<String>()
+    
     private func handle(_ fn: CalculatorFn, _ values: [Double]) -> Double {
+        history.append(fn.history(values))
         return fn.execute(values)
     }
     

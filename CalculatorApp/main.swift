@@ -47,6 +47,8 @@ while(true) {
     } else if (input == "multiply") {
         let result = calculator.multiply(gatherNumbers())
         print("Result: \(result)")
+    } else if (input == "history") {
+        print("History: \(calculator.history.joined(separator: "\n"))")
     } else {
         print("Unexpected function, try help!")
     }
