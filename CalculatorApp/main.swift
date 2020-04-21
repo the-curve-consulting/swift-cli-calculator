@@ -27,30 +27,60 @@ func gatherNumbers() -> [Double] {
     return numbers
 }
 
+func quit() {
+    exit(0)
+}
+
+func help() {
+    print("Commands: add, subtract, multiply, divide, history or help")
+}
+
+func add() {
+    let result = calculator.add(gatherNumbers())
+    print("Result: \(result)")
+}
+
+func subtract() {
+    let result = calculator.subtract(gatherNumbers())
+    print("Result: \(result)")
+}
+
+func divide() {
+    let result = calculator.divide(gatherNumbers())
+    print("Result: \(result)")
+}
+
+func multiply() {
+    let result = calculator.multiply(gatherNumbers())
+    print("Result: \(result)")
+}
+
+func history() {
+    print("History: \(calculator.history.joined(separator: "\n"))")
+}
+
+let commands = [
+    "quit": quit,
+    "help": help,
+    "add": add,
+    "subtract": subtract,
+    "divide": divide,
+    "multiply": multiply,
+    "history": history,
+]
+
 while(true) {
     print("Function? ", terminator: "")     // Print function without a new line
     let input = readLine()?.lowercased()    // Gather user input
     
-    if (input == "quit") {
-        exit(0)
-    } else if (input == "help") {
-        print("Commands: add, subtract, multiply, divide, history or help")
-    } else if (input == "add") {
-        let result = calculator.add(gatherNumbers())
-        print("Result: \(result)")
-    } else if (input == "subtract") {
-        let result = calculator.subtract(gatherNumbers())
-        print("Result: \(result)")
-    } else if (input == "divide") {
-        let result = calculator.divide(gatherNumbers())
-        print("Result: \(result)")
-    } else if (input == "multiply") {
-        let result = calculator.multiply(gatherNumbers())
-        print("Result: \(result)")
-    } else if (input == "history") {
-        print("History: \(calculator.history.joined(separator: "\n"))")
+    guard let inputStr = input else {
+        continue;
+    }
+    
+    if let fn = commands[inputStr] {
+        fn()
     } else {
-        print("Unexpected function, try help!")
+        print("Unexpected function: \(inputStr). Try help!")
     }
 }
 
