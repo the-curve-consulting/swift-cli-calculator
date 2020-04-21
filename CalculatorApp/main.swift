@@ -8,12 +8,15 @@
 
 import Foundation
 
+
 while(true) {
     print("Function? ", terminator: "")     // Print function without a new line
-    let input = readLine()?.lowercased();   // Gather user input
+    let input = readLine()?.lowercased()    // Gather user input
     
     if (input == "quit") {
-        exit(0);
+        exit(0)
+    } else if (input == "help") {
+        print("Commands: add, subtract, multiply, divide, history or help")
     }
 }
 
