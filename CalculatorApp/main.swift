@@ -8,6 +8,8 @@
 
 import Foundation
 
+let calculator = Calculator()
+
 func gatherNumbers() -> [Double] {
     print("Enter numbers one at a time, leave blank to finish?")
     
@@ -34,8 +36,19 @@ while(true) {
     } else if (input == "help") {
         print("Commands: add, subtract, multiply, divide, history or help")
     } else if (input == "add") {
-        let numbers = gatherNumbers()
-        print("Numbers: \(numbers)")
+        let result = calculator.add(gatherNumbers())
+        print("Result: \(result)")
+    } else if (input == "subtract") {
+        let result = calculator.subtract(gatherNumbers())
+        print("Result: \(result)")
+    } else if (input == "divide") {
+        let result = calculator.divide(gatherNumbers())
+        print("Result: \(result)")
+    } else if (input == "multiply") {
+        let result = calculator.multiply(gatherNumbers())
+        print("Result: \(result)")
+    } else {
+        print("Unexpected function, try help!")
     }
 }
 

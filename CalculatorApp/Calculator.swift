@@ -20,18 +20,48 @@ class AddFn : CalculatorFn {
 
 class SubtractFn : CalculatorFn {
     func execute(_ values: [Double]) -> Double {
-        return values.reduce(0, -)
+        var v = values; // Make it mutable
+        let first = v.removeFirst()
+        return v.reduce(first, -)
     }
 }
 
 class DivideFn : CalculatorFn {
     func execute(_ values: [Double]) -> Double {
-        return values.reduce(0, /)
+        var v = values; // Make it mutable
+        let first = v.removeFirst()
+        return v.reduce(first, /)
     }
 }
 
 class MultiplyFn : CalculatorFn {
     func execute(_ values: [Double]) -> Double {
-        return values.reduce(0, *)
+        var v = values; // Make it mutable
+        let first = v.removeFirst()
+        return v.reduce(first, *)
     }
+}
+
+class Calculator {
+    
+    private func handle(_ fn: CalculatorFn, _ values: [Double]) -> Double {
+        return fn.execute(values)
+    }
+    
+    func add(_ values: [Double]) -> Double {
+        handle(AddFn(), values)
+    }
+    
+    func subtract(_ values: [Double]) -> Double {
+        handle(SubtractFn(), values)
+    }
+    
+    func multiply(_ values: [Double]) -> Double {
+        handle(MultiplyFn(), values)
+    }
+    
+    func divide(_ values: [Double]) -> Double {
+        handle(DivideFn(), values)
+    }
+    
 }
