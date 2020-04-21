@@ -35,24 +35,12 @@ func help() {
     print("Commands: add, subtract, multiply, divide, history or help")
 }
 
-func add() {
-    let result = calculator.add(gatherNumbers())
-    print("Result: \(result)")
-}
-
-func subtract() {
-    let result = calculator.subtract(gatherNumbers())
-    print("Result: \(result)")
-}
-
-func divide() {
-    let result = calculator.divide(gatherNumbers())
-    print("Result: \(result)")
-}
-
-func multiply() {
-    let result = calculator.multiply(gatherNumbers())
-    print("Result: \(result)")
+func mathFunc(_ fn: @escaping ([Double]) -> Double) -> (() -> ()) {
+    func x() {
+        let result = fn(gatherNumbers())
+        print("Result: \(result)")
+    }
+    return x;
 }
 
 func history() {
@@ -62,10 +50,10 @@ func history() {
 let commands = [
     "quit": quit,
     "help": help,
-    "add": add,
-    "subtract": subtract,
-    "divide": divide,
-    "multiply": multiply,
+    "add": mathFunc(calculator.add),
+    "subtract": mathFunc(calculator.subtract),
+    "divide": mathFunc(calculator.divide),
+    "multiply": mathFunc(calculator.multiply),
     "history": history,
 ]
 
