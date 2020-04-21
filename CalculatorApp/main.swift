@@ -8,5 +8,12 @@
 
 import Foundation
 
-print("Hello, World!")
+while(true) {
+    print("Function? ", terminator: "")     // Print function without a new line
+    let input = readLine()?.lowercased();   // Gather user input
+    
+    if (input == "quit") {
+        exit(0);
+    }
+}
 
